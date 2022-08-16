@@ -1,24 +1,35 @@
-void setup() {
-  // put your setup code here, to run once:
-  
-  pinMode(3,INPUT);
-  Serial.begin(9600);
+int p1=12;
+int p2=11;
+int p3=10;
+int p4=9;
+int ir=13;
 
-}
+void setup() {
+  pinMode(ir, INPUT);
+  pinMode(p1, OUTPUT);
+  pinMode(p2, OUTPUT);
+  pinMode(p3, OUTPUT);
+  pinMode(p4, OUTPUT);
+  Serial.begin(9600);
+  }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  bool a;
-  a = digitalRead(3);
-
-  if (a==1){
-    Serial.println("Off");
+  char control = digitalRead(ir);
+  if(control==HIGH){
+    digitalWrite(p1,HIGH);
+    digitalWrite(p2,LOW);
+    digitalWrite(p3,HIGH);
+    digitalWrite(p4,LOW);
+    delay(2000);
+    digitalWrite(p1,LOW);
+    digitalWrite(p3,LOW);
     delay(1000);
   }
-  
-  if (a==0){
-    Serial.println("On");
-    delay(1000);
+  else{
+    digitalWrite(p1,LOW);
+    digitalWrite(p2,LOW);
+    digitalWrite(p3,LOW);
+    digitalWrite(p4,LOW);
+    delay(2000);
   }
-
 }
